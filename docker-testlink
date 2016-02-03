@@ -1,0 +1,11 @@
+FROM alans09/testlink-robot
+
+RUN apt-get update && apt-get upgrade -y
+RUN chmod -R 777 /var/testlink/
+COPY config_db.inc.php /var/www/html/testlink/
+
+COPY supervisor.conf /etc/supervisor/conf.d/supervisord.conf
+
+EXPOSE 80
+
+CMD ["/usr/bin/supervisord"]

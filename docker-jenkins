@@ -1,0 +1,10 @@
+FROM jenkins
+
+USER root
+RUN apt-get update && apt-get upgrade -y
+RUN apt-get install python-pip -y
+RUN pip install robotframework
+COPY plugins.txt /tmp/
+RUN /usr/local/bin/plugins.sh /tmp/plugins.txt
+
+USER jenkins
